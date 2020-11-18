@@ -5,8 +5,11 @@ mainly the code `hyperpose/Model/openpose` and `hyperpose/Dataset/userdef_datase
 
 
 ## You can see the dataset of fly in the filefold `data/fly` and can train this model by running `happy_train.py`.
+The training process can be operated in Windows and Linux.
 
-# The following is the original `README.mc` of `hyperpose`.
+But I have contered with the issue [ValueError: Dimensions must be equal](https://github.com/tensorlayer/hyperpose/issues/336)
+
+# The following is the original `README.md` of `hyperpose`.
 
 
 
