@@ -1,8 +1,10 @@
 # Hyperpose4fly
 
 ## This repo is clone from `hyperpose` and has been changed for the dataset of fly.
+mainly the code `hyperpose/Model/openpose` and `hyperpose/Dataset/userdef_dataset`.
 
-## You can see the dataset of fly in the filefold `data/fly`.
+
+## You can see the dataset of fly in the filefold `data/fly` and can train this model by running `happy_train.py`.
 
 
 
