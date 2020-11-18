@@ -6,6 +6,8 @@ mainly the code `hyperpose/Model/openpose` and `hyperpose/Dataset/userdef_datase
 
 ## You can see the dataset of fly in the filefold `data/fly` and can train this model by running `happy_train.py`.
 
+# The following is the original `README.mc` of `hyperpose`.
+
 
 
 </a>
