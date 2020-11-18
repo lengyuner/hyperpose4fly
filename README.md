@@ -1,13 +1,16 @@
 # Hyperpose4fly
 
-## This repo is clone from `hyperpose` and has been changed for the dataset of fly.
+## This repo is a clone from `hyperpose` and has been changed for the dataset of the fly.
 mainly the code `hyperpose/Model/openpose` and `hyperpose/Dataset/userdef_dataset`.
 
 
 ## You can see the dataset of fly in the filefold `data/fly` and can train this model by running `happy_train.py`.
 The training process can be operated in Windows and Linux.
 
-But I have contered with the issue [ValueError: Dimensions must be equal](https://github.com/tensorlayer/hyperpose/issues/336)
+But I have countered with the issue [ValueError: Dimensions must be equal](https://github.com/tensorlayer/hyperpose/issues/336)
+
+If you can fix this problem please let me know. Lot of Thanks~
+
 
 # The following is the original `README.md` of `hyperpose`.
 
