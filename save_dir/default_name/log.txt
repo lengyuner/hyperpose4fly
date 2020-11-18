@@ -1,0 +1,64 @@
+loading ckpt...
+loading pretrained backbone...
+loading saved training model weights...
+model_path doesn't exist, model parameters are initialized
+Start - n_step: 1000000 batch_size: 8 lr_init: 9.999999747378752e-05 lr_decay_steps: [200000, 300000, 360000, 420000, 480000, 540000, 600000, 700000, 800000, 900000] lr_decay_factor: 0.666 weight_decay_factor: 0.0001
+loading ckpt...
+loading pretrained backbone...
+loading saved training model weights...
+model_path doesn't exist, model parameters are initialized
+Start - n_step: 1000000 batch_size: 8 lr_init: 9.999999747378752e-05 lr_decay_steps: [200000, 300000, 360000, 420000, 480000, 540000, 600000, 700000, 800000, 900000] lr_decay_factor: 0.666 weight_decay_factor: 0.0001
+loading ckpt...
+loading pretrained backbone...
+loading saved training model weights...
+model_path doesn't exist, model parameters are initialized
+Start - n_step: 1000000 batch_size: 8 lr_init: 9.999999747378752e-05 lr_decay_steps: [200000, 300000, 360000, 420000, 480000, 540000, 600000, 700000, 800000, 900000] lr_decay_factor: 0.666 weight_decay_factor: 0.0002
+Train iteration 100 / 1000000: Learning rate 9.999999747378752e-05 total_loss:201.12139892578125, conf_loss:279.4932861328125, paf_loss:119.83041381835938, l2_loss 1.4594645500183105 stage_num:2 time:0.0
+stage_0 conf_loss:260.0041198730469 paf_loss:120.60367584228516
+stage_1 conf_loss:298.982666015625 paf_loss:119.05715942382812
+Train iteration 200 / 1000000: Learning rate 9.999999747378752e-05 total_loss:86.52190399169922, conf_loss:53.33734893798828, paf_loss:116.75992584228516, l2_loss 1.4732675552368164 stage_num:2 time:0.0
+stage_0 conf_loss:54.167213439941406 paf_loss:117.40908813476562
+stage_1 conf_loss:52.507450103759766 paf_loss:116.11075592041016
+Train iteration 300 / 1000000: Learning rate 9.999999747378752e-05 total_loss:85.43243408203125, conf_loss:52.2002067565918, paf_loss:115.72303771972656, l2_loss 1.4708285331726074 stage_num:2 time:0.0
+stage_0 conf_loss:52.78004837036133 paf_loss:116.47584533691406
+stage_1 conf_loss:51.620361328125 paf_loss:114.97021484375
+Train iteration 400 / 1000000: Learning rate 9.999999747378752e-05 total_loss:82.58213806152344, conf_loss:50.80512619018555, paf_loss:111.42225646972656, l2_loss 1.4684613943099976 stage_num:2 time:0.0009908676147460938
+stage_0 conf_loss:51.88615798950195 paf_loss:112.11748504638672
+stage_1 conf_loss:49.72407150268555 paf_loss:110.72705078125
+Train iteration 500 / 1000000: Learning rate 9.999999747378752e-05 total_loss:85.26460266113281, conf_loss:52.059349060058594, paf_loss:115.5381088256836, l2_loss 1.46589195728302 stage_num:2 time:0.0
+stage_0 conf_loss:52.8397331237793 paf_loss:116.36520385742188
+stage_1 conf_loss:51.2789421081543 paf_loss:114.71098327636719
+Train iteration 600 / 1000000: Learning rate 9.999999747378752e-05 total_loss:87.14469146728516, conf_loss:52.24361038208008, paf_loss:119.11920166015625, l2_loss 1.463311791419983 stage_num:2 time:0.0
+stage_0 conf_loss:53.309234619140625 paf_loss:119.7437744140625
+stage_1 conf_loss:51.177982330322266 paf_loss:118.49462127685547
+Train iteration 700 / 1000000: Learning rate 9.999999747378752e-05 total_loss:83.10676574707031, conf_loss:49.82466125488281, paf_loss:113.4669189453125, l2_loss 1.4609981775283813 stage_num:2 time:0.0009958744049072266
+stage_0 conf_loss:50.53084182739258 paf_loss:113.906494140625
+stage_1 conf_loss:49.118465423583984 paf_loss:113.02725982666016
+Train iteration 800 / 1000000: Learning rate 9.999999747378752e-05 total_loss:83.81803894042969, conf_loss:49.855201721191406, paf_loss:114.86361694335938, l2_loss 1.4586172103881836 stage_num:2 time:0.0
+stage_0 conf_loss:50.9089241027832 paf_loss:115.50520324707031
+stage_1 conf_loss:48.80149841308594 paf_loss:114.22200012207031
+Train iteration 900 / 1000000: Learning rate 9.999999747378752e-05 total_loss:84.30191802978516, conf_loss:50.41755294799805, paf_loss:115.27383422851562, l2_loss 1.4561998844146729 stage_num:2 time:0.0
+stage_0 conf_loss:51.16995620727539 paf_loss:115.84561157226562
+stage_1 conf_loss:49.66514205932617 paf_loss:114.70206451416016
+Train iteration 1000 / 1000000: Learning rate 9.999999747378752e-05 total_loss:83.6166763305664, conf_loss:49.12498092651367, paf_loss:115.20101165771484, l2_loss 1.4536607265472412 stage_num:2 time:0.0009911060333251953
+stage_0 conf_loss:49.9095344543457 paf_loss:115.86906433105469
+stage_1 conf_loss:48.3404426574707 paf_loss:114.532958984375
+loading ckpt...
+loading pretrained backbone...
+loading saved training model weights...
+model_path doesn't exist, model parameters are initialized
+loading ckpt...
+loading pretrained backbone...
+loading saved training model weights...
+model_path doesn't exist, model parameters are initialized
+Start - n_step: 1000000 batch_size: 8 lr_init: 9.999999747378752e-05 lr_decay_steps: [200000, 300000, 360000, 420000, 480000, 540000, 600000, 700000, 800000, 900000] lr_decay_factor: 0.666 weight_decay_factor: 0.0001
+model_path doesn't exist, model parameters are initialized
+model_path doesn't exist, model parameters are initialized
+model_path doesn't exist, model parameters are initialized
+model_path doesn't exist, model parameters are initialized
+model_path doesn't exist, model parameters are initialized
+model_path doesn't exist, model parameters are initialized
+model_path doesn't exist, model parameters are initialized
+model_path doesn't exist, model parameters are initialized
+model_path doesn't exist, model parameters are initialized
+model_path doesn't exist, model parameters are initialized
