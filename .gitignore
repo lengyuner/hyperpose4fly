@@ -6,10 +6,10 @@ __pycache__
 *.dylib
 *.gz
 *.idx
-*.jpg
+# *.jpg
 *.log
 *.out
-*.png
+# *.png
 *.uff
 .vscode/
 /3rdparty
@@ -18,7 +18,7 @@ __pycache__
 /checkpoints
 /cmake-build*
 /coco
-/data
+# /data
 /lib
 /tensorlayer
 /vis
