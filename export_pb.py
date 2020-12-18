@@ -50,6 +50,7 @@ if __name__ == '__main__':
     config=Config.get_config()
     export_model=Model.get_model(config)
 
+
     input_path=f"{config.model.model_dir}/newest_model.npz"
     output_dir=f"{args.output_dir}/{config.model.model_name}"
     output_path=f"{output_dir}/frozen_{config.model.model_name}.pb"
@@ -73,4 +74,5 @@ if __name__ == '__main__':
         tf.io.write_graph(graph_or_graph_def=frozen_graph_def,logdir=output_dir,name=f"frozen_{args.model_name}.pb",\
             as_text=False)
         print(f"exporting pb file finished! output file: {output_path}")
+
 

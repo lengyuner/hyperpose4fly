@@ -48,7 +48,7 @@ class Post_Processor:
         #conf_map
         if(conf_map.shape[0]!=img_h or conf_map.shape[1]!=img_w):
             conf_map=cv2.resize(conf_map,(img_w,img_h))
-        conf_map=conf_map[np.newaxis,:,:,:]
+        conf_map=conf_map[np.newaxis,:,:,:]#TODO(JZ)
         #paf_map
         if(paf_map.shape[0]!=img_h or paf_map.shape[1]!=img_w):
             paf_map=cv2.resize(paf_map,(img_w,img_h))

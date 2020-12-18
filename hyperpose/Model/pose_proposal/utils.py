@@ -8,7 +8,7 @@ from tensorlayer import logging
 from tensorlayer.files.utils import (del_file, folder_exists, maybe_download_and_extract)
 
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use('Agg')#TODO(JZ)
 import matplotlib.pyplot as plt
 from distutils.dir_util import mkpath
 from scipy.spatial.distance import cdist

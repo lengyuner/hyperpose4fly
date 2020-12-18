@@ -11,7 +11,7 @@ initial_b=tl.initializers.constant(value=0.0)
 ##TODO(JZ)
 # from ..define import UserdefPart,UserdefColor,UserdefLimb
 class OpenPose(Model):
-    def __init__(self,parts=CocoPart,limbs=CocoLimb,colors=None,n_pos=19,n_limbs=19,num_channels=128,\
+    def __init__(self,parts=CocoPart,limbs=CocoLimb,colors=None,n_pos=19, n_limbs=19,num_channels=128,\
         hin=368,win=368,hout=46,wout=46,backbone=None,pretraining=False,data_format="channels_first"):
         super().__init__()
         self.num_channels=num_channels
@@ -52,18 +52,25 @@ class OpenPose(Model):
         conf_list=[]
         paf_list=[]
         #backbone feature extract
+        # print(x)
         backbone_features=self.backbone.forward(x)
+        # print('a' * 30)
+        # print(backbone_features)
         backbone_features=self.cpm_stage.forward(backbone_features)
         #init stage
+        # print('b' * 30)
         init_conf,init_paf=self.init_stage.forward(backbone_features)
         conf_list.append(init_conf)
         paf_list.append(init_paf)
-        #refinement stages  
+        #refinement stages
+        # print('c' * 30)
         for refine_stage_idx in range(1,stage_num+1):
             ref_x=tf.concat([backbone_features,conf_list[-1],paf_list[-1]],self.concat_dim)
             ref_conf,ref_paf=eval(f"self.refinement_stage_{refine_stage_idx}.forward(ref_x)")
             conf_list.append(ref_conf)
             paf_list.append(ref_paf)
+
+        # print('d' * 30)
         if(domainadapt):
             return conf_list[-1],paf_list[-1],conf_list,paf_list,backbone_features
         if(is_train):
@@ -78,6 +85,7 @@ class OpenPose(Model):
     
     def cal_loss(self,gt_conf,gt_paf,mask,stage_confs,stage_pafs):
         stage_losses=[]
+        print('batch_size in cal_loss: ', gt_conf.shape[0])
         batch_size=gt_conf.shape[0]
         if(self.concat_dim==1):
             mask_conf=tf_repeat(mask, [1,self.n_confmaps ,1,1])

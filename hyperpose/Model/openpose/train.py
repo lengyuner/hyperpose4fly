@@ -9,7 +9,7 @@ import sys
 import json
 import numpy as np
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use('Agg')#TODO(JZ)
 import tensorflow as tf
 import tensorlayer as tl
 from pycocotools.coco import maskUtils
@@ -38,7 +38,7 @@ def _data_aug_fn(image, ground_truth, hin, hout, win, wout, parts, limbs ,flip_l
     mask = ground_truth["mask"]
 
     # decode mask
-    h_mask, w_mask, _ = np.shape(image)
+    h_mask, w_mask, _ = np.shape(image)###TODO
     mask_miss = np.ones((h_mask, w_mask), dtype=np.uint8)
     if(mask!=None):
         for seg in mask:
@@ -48,46 +48,19 @@ def _data_aug_fn(image, ground_truth, hin, hout, win, wout, parts, limbs ,flip_l
                 print(f"test error mask shape mask_miss:{mask_miss.shape} bin_mask:{bin_mask.shape}")
             else:
                 mask_miss = np.bitwise_and(mask_miss, bin_mask)
-    
+    # if
     #get transform matrix
-    M_rotate = tl.prepro.affine_rotation_matrix(angle=(-30, 30))  # original paper: -40~40
-    M_zoom = tl.prepro.affine_zoom_matrix(zoom_range=(0.5, 0.8))  # original paper: 0.5~1.1
-    M_combined = M_rotate.dot(M_zoom)
-    h, w, _ = image.shape
-    transform_matrix = tl.prepro.transform_matrix_offset_center(M_combined, x=w, y=h)
+    # M_rotate = tl.prepro.affine_rotation_matrix(angle=(-30, 30))  # original paper: -40~40
+    # M_zoom = tl.prepro.affine_zoom_matrix(zoom_range=(0.5, 0.8))  # original paper: 0.5~1.1
+    # M_combined = M_rotate.dot(M_zoom)
+    # h, w, _ = image.shape
+    # transform_matrix = tl.prepro.transform_matrix_offset_center(M_combined, x=w, y=h)
     
     #apply data augmentation
-    image = tl.prepro.affine_transform_cv2(image, transform_matrix)
-    mask_miss = tl.prepro.affine_transform_cv2(mask_miss, transform_matrix, border_mode='replicate')
-    # print(annos)
-    # print(transform_matrix)
-    # [array([[-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [105., 95.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.],
-    #         [-1000., -1000.]])]
+    # image = tl.prepro.affine_transform_cv2(image, transform_matrix)
+    # mask_miss = tl.prepro.affine_transform_cv2(mask_miss, transform_matrix, border_mode='replicate')
 
-    # [[7.98101109e-01  8.92176826e-03  4.17691499e+01]
-    #  [-8.92176826e-03  7.98101109e-01  6.64784064e+01]
-    # [0.00000000e+00
-    # 0.00000000e+00
-    # 1.00000000e+00]]
-
-    annos = tl.prepro.affine_transform_keypoints(annos, transform_matrix)
+    # annos = tl.prepro.affine_transform_keypoints(annos, transform_matrix)
 
     ##TODO
     #temply ignore flip augmentation 
@@ -95,7 +68,7 @@ def _data_aug_fn(image, ground_truth, hin, hout, win, wout, parts, limbs ,flip_l
     if(flip_list!=None):
         image, annos, mask_miss = tl.prepro.keypoint_random_flip(image,annos, mask_miss, prob=0.5, flip_list=flip_list)
     '''
-    image, annos, mask_miss = tl.prepro.keypoint_resize_random_crop(image, annos, mask_miss, size=(hin, win)) # hao add
+    # image, annos, mask_miss = tl.prepro.keypoint_resize_random_crop(image, annos, mask_miss, size=(hin, win)) # hao add
 
     # generate result which include keypoints heatmap and vectormap
     height, width, _ = image.shape
@@ -127,10 +100,11 @@ def _map_fn(img_list, annos ,data_aug_fn, hin, win, hout, wout, parts, limbs):
     image = tf.image.convert_image_dtype(image, dtype=tf.float32)
     #data augmentation using affine transform and get paf maps
     image, resultmap, mask, labeled = tf.py_function(data_aug_fn, [image, annos], [tf.float32, tf.float32, tf.float32, tf.float32])
+    # TODO(JZ) 去除数据增强
     #data augmentaion using tf
-    image = tf.image.random_brightness(image, max_delta=35./255.)   # 64./255. 32./255.)  caffe -30~50
-    image = tf.image.random_contrast(image, lower=0.5, upper=1.5)   # lower=0.2, upper=1.8)  caffe 0.3~1.5
-    image = tf.clip_by_value(image, clip_value_min=0.0, clip_value_max=1.0)
+    # image = tf.image.random_brightness(image, max_delta=35./255.)   # 64./255. 32./255.)  caffe -30~50
+    # image = tf.image.random_contrast(image, lower=0.5, upper=1.5)   # lower=0.2, upper=1.8)  caffe 0.3~1.5
+    # image = tf.clip_by_value(image, clip_value_min=0.0, clip_value_max=1.0)
     return image, resultmap, mask, labeled
 
 def get_paramed_map_fn(hin,win,hout,wout,parts,limbs,flip_list=None,data_format="channels_first"):
@@ -168,11 +142,13 @@ def single_train(train_model,dataset,config):
     #train hyper params
     #dataset params
     n_step = config.train.n_step
+    print('batch_size in openpose_init: ',config.train.batch_size)
     batch_size = config.train.batch_size
     #learning rate params
     lr_init = config.train.lr_init
     lr_decay_factor = config.train.lr_decay_factor
-    lr_decay_steps= [200000,300000,360000,420000,480000,540000,600000,700000,800000,900000]
+    # lr_decay_steps= [200000,300000,360000,420000,480000,540000,600000,700000,800000,900000]
+    lr_decay_steps = [5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000]
     weight_decay_factor = config.train.weight_decay_factor
     #log and checkpoint params
     log_interval=config.log.log_interval
@@ -195,7 +171,9 @@ def single_train(train_model,dataset,config):
     dataset_type=dataset.get_dataset_type()
     parts,limbs,data_format=train_model.parts,train_model.limbs,train_model.data_format
     flip_list=get_flip_list(dataset_type)
+
     paramed_map_fn=get_paramed_map_fn(hin,win,hout,wout,parts,limbs,flip_list=flip_list,data_format=data_format)
+
     train_dataset = train_dataset.shuffle(buffer_size=4096).repeat()
     train_dataset = train_dataset.map(paramed_map_fn,num_parallel_calls=max(multiprocessing.cpu_count()//2,1))
     train_dataset = train_dataset.batch(config.train.batch_size)  
@@ -300,8 +278,8 @@ def single_train(train_model,dataset,config):
         else:
             gt_conf = gt_label[:, :, :, :n_pos]
             gt_paf = gt_label[:, :, :, n_pos:]
-        print(gt_paf.numpy().shape)
-        print(gt_conf.numpy().shape)
+        # print(gt_paf.numpy().shape)
+        # print(gt_conf.numpy().shape)
 
         # learning rate decay
         if (step in lr_decay_steps):
@@ -317,7 +295,7 @@ def single_train(train_model,dataset,config):
             avg_gan_loss += gan_loss / log_interval
             avg_d_loss += d_loss / log_interval
         else:
-            print(image.numpy().shape())
+            # print('image.numpy().shape',image.numpy().shape)
             # print(gt_conf.numpy())
             # print(gt_paf.numpy())
             # print(mask.numpy())

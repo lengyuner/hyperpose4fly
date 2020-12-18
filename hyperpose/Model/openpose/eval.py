@@ -68,7 +68,7 @@ def infer_one_img(model,post_processor,img,img_id=-1,enable_multiscale_search=Fa
         conf_map=conf_map.numpy()[0]
         paf_map=paf_map.numpy()[0]
     humans=post_processor.process(conf_map.copy(),paf_map.copy(),img_h,img_w,data_format=data_format)
-    #print(f"test shape before draw: img:{img.shape} conf_map:{conf_map.shape} paf_map:{paf_map.shape}")
+    # print(f"test shape before draw: img:{img.shape} conf_map:{conf_map.shape} paf_map:{paf_map.shape}")
     if(is_visual):
         if(data_format=="channels_first"):
             conf_map=conf_map.transpose([1,2,0])
@@ -96,7 +96,7 @@ def visualize(img,img_id,humans,conf_map,paf_map,save_dir):
     a.set_title("output result")
     plt.imshow(vis_img)
     #show conf_map
-    show_conf_map=np.amax(conf_map[:,:,:-1],axis=2)
+    show_conf_map=np.amax(conf_map[:,:,:-1],axis=2) #TODO(JZ)
     a=fig.add_subplot(2,2,3)
     a.set_title("conf_map")
     plt.imshow(show_conf_map,alpha=0.8)

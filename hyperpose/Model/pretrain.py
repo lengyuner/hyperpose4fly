@@ -42,8 +42,8 @@ def single_pretrain(model,dataset,config):
     ##TODO(JZ)
     lr_init=config.pretrain.lr_init
     lr_decay_step=config.pretrain.lr_decay_step
-    config.pretrain.batch_size=4
-    batch_size=4 #config.pretrain.batch_size
+    # config.pretrain.batch_size=4
+    batch_size=config.pretrain.batch_size
     total_step=config.pretrain.total_step
     log_interval=config.pretrain.log_interval
     val_interval=config.pretrain.val_interval

@@ -5,7 +5,7 @@ from easydict import EasyDict as edict
 #model configuration
 model = edict()
 # number of keypoints + 1 for background
-model.n_pos = 19  
+model.n_pos = 5 #19 #TODO(JZ)
 model.num_channels=128
 # input size during training , 240
 model.hin = 368  
@@ -22,7 +22,7 @@ model.model_dir = f"./save_dir/{model.model_name}/model_dir"
 
 #train configuration
 train=edict()
-train.batch_size = 8
+train.batch_size = 4#8 #TODO(JZ)
 train.save_interval = 2000
 # total number of step
 train.n_step = 1000000

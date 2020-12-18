@@ -332,6 +332,8 @@ class vgg19_backbone(Model):
 
     def forward(self,x):
         x=x-self.vgg_mean
+        # print(x)
+        # print('********************\n'*5)
         return self.main_block.forward(x)
     
     def cal_loss(self,label,predict):

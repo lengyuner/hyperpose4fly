@@ -7,7 +7,7 @@ print(tf.__version__)
 import cv2
 import numpy as np
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use('Agg')#TODO(JZ)
 import matplotlib.pyplot as plt
 from hyperpose import Config,Model,Dataset
 from hyperpose.Dataset import imread_rgb_float,imwrite_rgb_float
@@ -27,6 +27,7 @@ print(config.model)
 model=Model.get_model(config)
 weight_path=f"{config.model.model_dir}/lightweight_openpose_resnet50.npz"
 # weight_path=f"{config.model.model_dir}/lightweight_openpose_resnet50.pb"
+weight_path = 'C:/Users/ps/Desktop/djz/hyperpose/save_dir/USERDEF_20201121_1621/model_dir/newest_model.npz'
 
 model.load_weights(weight_path)
 
@@ -35,13 +36,18 @@ model.load_weights(weight_path)
 
 #infer on single image
 ori_image=cv2.cvtColor(cv2.imread("./sample.jpg"),cv2.COLOR_BGR2RGB)
+# img_name = "./data/fly/val2020/000000000000.jpg"
+# ori_image=cv2.cvtColor(cv2.imread(img_name),cv2.COLOR_BGR2RGB)
 input_image=ori_image.astype(np.float32)/255.0
 if(model.data_format=="channels_first"):
     input_image=np.transpose(input_image,[2,0,1])
 
 img_c,img_h,img_w=input_image.shape
 conf_map,paf_map=model.infer(input_image[np.newaxis,:,:,:])
-
+# import matplotlib.pyplot as plt
+# conf_temp=conf_map[0,:,:,0]
+# plt.imshow(conf_temp,"gray")
+# plt.imsave('a1234343124.jpg',conf_temp)
 #get visualize function, which is able to get visualized part and limb heatmap image from inferred heatmaps
 visualize=Model.get_visualize(Config.MODEL.Openpose)
 vis_parts_heatmap,vis_limbs_heatmap=visualize(input_image,conf_map[0],paf_map[0],save_tofile=False,)

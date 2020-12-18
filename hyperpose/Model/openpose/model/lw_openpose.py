@@ -72,6 +72,7 @@ class LightWeightOpenPose(Model):
     
     def cal_loss(self,gt_conf,gt_paf,mask,stage_confs,stage_pafs):
         stage_losses=[]
+        print('batch_size in cal_loss: ',gt_conf.shape[0])
         batch_size=gt_conf.shape[0]
         if(self.concat_dim==1):
             mask_conf=tf_repeat(mask, [1,self.n_confmaps ,1,1])

@@ -1,7 +1,8 @@
 import os
 import logging
 import matplotlib
-matplotlib.use("Agg")
+# matplotlib.use("Agg")
+#TODO（JZ）
 from copy import deepcopy
 from easydict import EasyDict as edict
 from .define import *
@@ -165,7 +166,7 @@ def set_model_backbone(model_backbone):
     arg1 : Config.BACKBONE
         a enum value of enum class Config.BACKBONE
         available options:
-|           Config.BACKBONE.DEFUALT (default backbone of the architecture)
+|           Config.BACKBONE.DEFUALT (default backbone of the architecture Vgg19)
 |           Config.BACKBONE.MobilenetV1
 |           Config.BACKBONE.MobilenetV2
 |           Config.BACKBONE.Vggtiny

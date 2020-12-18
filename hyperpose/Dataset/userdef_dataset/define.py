@@ -6,12 +6,13 @@ class UserdefPart(Enum):
     Tail = 2
     LWing = 3
     RWing  = 4
+    Background = 5
 UserdefLimb = list(zip(
     [0, 1, 1, 1, 2, 2],
     [1, 2, 3, 4, 3, 4]))
 
 #TODO(JZ)creat automatically color to be added
-UserdefColor = [[255, 0, 0], [255, 85, 0], [255, 170, 0], [255, 255, 0], [170, 255, 0]]
+UserdefColor = [[255, 0, 0], [255, 85, 0], [255, 170, 0], [255, 255, 0], [170, 255, 0], [85, 255, 0]]
 # CocoColor = [[255, 0, 0], [255, 85, 0], [255, 170, 0], [255, 255, 0], [170, 255, 0], [85, 255, 0], [0, 255, 0],
 #               [0, 255, 85], [0, 255, 170], [0, 255, 255], [0, 170, 255], [0, 85, 255], [0, 0, 255], [85, 0, 255],
 #               [170, 0, 255], [255, 0, 255], [255, 0, 170], [255, 0, 85]]
@@ -26,14 +27,14 @@ UserdefColor = [[255, 0, 0], [255, 85, 0], [255, 170, 0], [255, 255, 0], [170, 2
 
 
 # convert kpts from opps to mscoco
-from_opps_converter = {0: 0, 1: 2, 3: 3, 4: 4}
+from_opps_converter = {0: 0, 1: 1, 2: 2, 3: 3, 4: 4}
 # convert kpts from mscoco to opps
-to_opps_converter = {0: 0, 1: 2, 3: 3, 4: 4}
+to_opps_converter = {0: 0, 1: 1, 2: 2, 3: 3, 4: 4}
 
 def opps_input_converter(userdef_kpts):
     # cvt_kpts=np.zeros(shape=[19,2])
 
-    cvt_kpts = np.zeros(shape=[len(UserdefPart)+1, 2])
+    cvt_kpts = np.zeros(shape=[len(UserdefPart), 2])#TODO(JZ)  len()+1
     transform = np.array(
         # list(zip([0, 5, 6, 8, 10, 5, 7, 9, 12, 14, 16, 11, 13, 15, 2, 1, 4, 3],
         #          [0, 6, 6, 8, 10, 5, 7, 9, 12, 14, 16, 11, 13, 15, 2, 1, 4, 3])))

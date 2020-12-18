@@ -149,7 +149,7 @@ def visualize(img,conf_map,paf_map,save_name="maps",save_dir="./save_dir/vis_dir
 
     if(data_format=="channels_last"):
         conf_map=np.transpose(conf_map,[2,0,1])
-        paf_map=np.tranpose(paf_map,[2,0,1])
+        paf_map=np.transpose(paf_map,[2,0,1])
     elif(data_format=="channels_first"):
         img=np.transpose(img,[1,2,0])
     os.makedirs(save_dir,exist_ok=True)
@@ -161,7 +161,8 @@ def visualize(img,conf_map,paf_map,save_name="maps",save_dir="./save_dir/vis_dir
     a.set_title("input image")
     plt.imshow(vis_img)
     #show conf_map
-    show_conf_map=np.amax(np.abs(conf_map[:-1,:,:]),axis=0)
+    # show_conf_map=np.amax(np.abs(conf_map[:,:,:]),axis=0)
+    show_conf_map = np.amax(np.abs(conf_map[:-1, :, :]), axis=0) #TODO(JZ)
     a=fig.add_subplot(2,2,3)
     a.set_title("conf_map")
     plt.imshow(show_conf_map)

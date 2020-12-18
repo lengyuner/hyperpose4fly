@@ -62,8 +62,8 @@ class Human:
     
     def draw_human(self,img):
         img_h,img_w,img_c=img.shape
-        radius=int(min(img_h,img_w)/80)
-        thickness=int(min(img_h,img_w)/100)
+        radius=max(int(min(img_h,img_w)/80),1)
+        thickness=max(int(min(img_h,img_w)/100),1)
         for part_idx in self.body_parts.keys():
             body_part=self.body_parts[part_idx]
             x=body_part.x
@@ -73,16 +73,16 @@ class Human:
         line_color=(255,0,0)
         for limb in self.limbs:
             src_part_idx,dst_part_idx=limb
-            if(src_part_idx==2 and dst_part_idx==16):
-                continue
-            elif(src_part_idx==5 and dst_part_idx==17):
-                continue
+            # if(src_part_idx==2 and dst_part_idx==16):
+            #     continue
+            # elif(src_part_idx==5 and dst_part_idx==17):
+            #     continue
             if((src_part_idx in self.body_parts) and (dst_part_idx in self.body_parts)):
                 src_body_part=self.body_parts[src_part_idx]
                 src_x,src_y=int(src_body_part.x),int(src_body_part.y)
                 dst_body_part=self.body_parts[dst_part_idx]
                 dst_x,dst_y=int(dst_body_part.x),int(dst_body_part.y)
-                img=cv2.line(img,(src_x,src_y),(dst_x,dst_y),color=line_color,thickness=thickness)
+                img=cv2.line(img,(src_x,src_y),(dst_x,dst_y),color=line_color,thickness=thickness)#TODO(JZ)
         return img
     
     def print(self):

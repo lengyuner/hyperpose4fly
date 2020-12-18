@@ -7,7 +7,7 @@ import cv2
 import time
 import sys
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use('Agg')#TODO(JZ)
 import numpy as np
 import tensorflow as tf
 import tensorlayer as tl

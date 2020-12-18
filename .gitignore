@@ -1,3 +1,8 @@
+
+/save_dir/nonsense/*
+/save_dir/*
+*.onnx
+/rubbish
 __pycache__
 .DS_Store
 .idea
@@ -6,11 +11,12 @@ __pycache__
 *.dylib
 *.gz
 *.idx
-# *.jpg
+*.jpg
 *.log
 *.out
-# *.png
+*.png
 *.uff
+
 .vscode/
 /3rdparty
 /bazel-*
@@ -18,8 +24,9 @@ __pycache__
 /checkpoints
 /cmake-build*
 /coco
-# /data
+/data
 /lib
+
 /tensorlayer
 /vis
 build

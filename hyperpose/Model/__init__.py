@@ -69,8 +69,8 @@ def get_model(config):
         dataset_type=config.data.dataset_type
         pretraining=config.pretrain.enable
         print(f"enable model backbone pretraining:{pretraining}")
-        pretraining=True
-        print('******************'*10)
+        # pretraining=True
+        # print('******************'*10)
 
         if(model_type == MODEL.Openpose or model_type == MODEL.LightweightOpenpose or model_type==MODEL.MobilenetThinOpenpose):
             from .openpose.utils import get_parts
@@ -94,7 +94,7 @@ def get_model(config):
         #set model
         if model_type == MODEL.Openpose:
             from .openpose import OpenPose as model_arch
-            print('n_pos = ',len(model.parts))
+            print('TODO：\nn_pos = ',len(model.parts))  #TODO(JZ)
             print('n_limbs = ', len(model.limbs))
             print('*****************************\n'*4)
             ret_model=model_arch(parts=model.parts,n_pos=len(model.parts),limbs=model.limbs,n_limbs=len(model.limbs),num_channels=model.num_channels,\
