@@ -330,12 +330,15 @@ matplotlib.use('Agg')
 # matplotlib.use('Qt5Agg')
 import matplotlib.pyplot as plt
 # C:\Users\ps\Desktop\djz\hyperpose\save_dir\USERDEF_Openpose_Resnet18_20201130_2259\train_vis_dir
+# UserdefColor = [[255, 0, 0], [255, 85, 0], [255, 170, 0], [255, 255, 0], [170, 255, 0], [85, 255, 0]]
+UserdefColor = [[1, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 1],[0, 0, 1], [0, 1, 0]]
 
 save_all_pic = 1
 if save_all_pic == 1:
-    path_from = './data/fly/val2020/'
+    path_from = './data/egg/fly/train2020/'
+    # C:\Users\ps\Desktop\djz\hyperpose\data\egg\fly\train2020
     # path_from = './data/fly/train2020/'
-    path_from = 'H:/data/picture_fly/2/'
+    # path_from = 'H:/data/picture_fly/2/'
     # path_to = 'C:/Users/ps/Desktop/djz/hyperpose/save_dir/USERDEF_20201121_1621/val/'
     # path_to = 'C:/Users/ps/Desktop/djz/hyperpose/save_dir/USERDEF_20201121_1621/val_head_output/'
     # path_to = 'C:/Users/ps/Desktop/djz/hyperpose/save_dir/USERDEF_Openpose_Mobilenetv2_20201124_2030/val_output/'
@@ -343,18 +346,22 @@ if save_all_pic == 1:
     # C:\Users\ps\Desktop\djz\hyperpose\save_dir\USERDEF_Openpose_Resnet18_20201130_1642\model_dir
     # path_to = 'C:/Users/ps/Desktop/djz/hyperpose/rubbish/val_head_output/'
     # path_ta = 'C:\Users\ps\Desktop\djz\hyperpose\save_dir\USERDEF_Openpose_Resnet18_20201130_2259\val_head_output/'
-    path_to = './save_dir/USERDEF_Openpose_Resnet18_20201202_2325/train_all/'
-    path_to = './save_dir/USERDEF_Openpose_Resnet18_20201202_2325/1/'
+    # path_to = './save_dir/USERDEF_Openpose_Resnet18_20201202_2325/1/'
+    path_to = './save_dir/USERDEF_Openpose_Resnet18_20201223_2319/train_all/'
+    path_to = './save_dir/USERDEF_Openpose_Resnet18_20201223_2319/train_all_3/'
+
     read_name = os.listdir(path_from)
     number_of_pic = len(read_name)
 
     start_time = time.time()
-    for K_0 in range(number_of_pic):#(10):# K_0=0
+    for K_0 in range(number_of_pic):#(10):#(number_of_pic):# K_0=0
         img_name = read_name[K_0]
         img0 = cv2.imread(path_from+img_name)
         # img1 = cv2.resize(img0, (432, 368))
         # img1 = cv2.resize(img0, (384, 288))
         img1 = cv2.resize(img0, (128, 96))
+        # img1 = np.copy(img0)
+        # img1 = cv2.resize(img0, (96, 96))#TODO(JZ)
         # plt.imshow(img1)
         ori_image = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
         input_image = ori_image.astype(np.float32) / 255.0
@@ -383,7 +390,8 @@ if save_all_pic == 1:
                 x, y = np.unravel_index(np.argmax(heatmap_avg), heatmap_avg.shape)
                 center = y, x  # x, y      #int(x*8),int(y*8)    #y, x
                 radius = 3  # int(radius)
-                cv2.circle(input_image, center, radius, (1, 0, 0), -1)
+                # cv2.circle(input_image, center, radius, (1, 0, 0), -1)
+                cv2.circle(input_image, center, radius, UserdefColor[K_1], -1)
             plt.imsave(path_to + img_name, input_image)
         find_head = 0
         if find_head == 1:
